@@ -1,17 +1,16 @@
----
-title: "Monopoly"
-author: "Zelos Zhu"
-date: "April 6, 2016"
-output: github_document
----
+Monopoly
+================
+Zelos Zhu
+April 6, 2016
 
-## Rules for movement
+Rules for movement
+------------------
 
 The Monopoly Board is basicaly a circle with 40 spaces on which a player can land. The number of spaces a player moves is determined by the roll of 2 dice. Most often, the player will roll the dice, land on a space, and end his turn there.
 
 However, several exceptions which provide the primary source of variation in space landing:
 
-One space sends players directly to jail. This space never counts as having been "landed upon." As soon as the player lands here, he is immediately sent to jail, and the jail space gets counted as landed upon. This is the only space on the game board that moves a player's piece. 
+One space sends players directly to jail. This space never counts as having been "landed upon." As soon as the player lands here, he is immediately sent to jail, and the jail space gets counted as landed upon. This is the only space on the game board that moves a player's piece.
 
 If a player rolls doubles (two of the same number), the player moves his piece, and then gets to roll the dice again for another move. However, if a player rolls doubles three times in a row, he is sent directly to jail. (The third space that the player would have 'landed on' does not count, but the jail space gets counted as landed on.)
 
@@ -49,15 +48,27 @@ For this simulation, each time a player ends his turn in Jail, a tally will be c
 
 We will simulate a 'long stay' strategy for Jail. This effectively means that the player will never pay the fee to get out jail unless forced to do so. Effectively, this means that he will roll the dice and only leave jail if he gets double or it is his third turn in jail.
 
-## The Simulation
+The Simulation
+--------------
 
 This runs 5,000 simulations of a two-player game that lasts 200 rolls/100 turns each. This is a total of 2 million dice rolls - 5000 games x 200 rolls x 2 dice.
 
-```{r Libraries}
+``` r
 library(tidyverse)
 ```
 
-```{r Gamebaord}
+    ## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+
+    ## ✔ ggplot2 3.1.0     ✔ purrr   0.2.5
+    ## ✔ tibble  1.4.2     ✔ dplyr   0.7.7
+    ## ✔ tidyr   0.8.2     ✔ stringr 1.3.1
+    ## ✔ readr   1.1.1     ✔ forcats 0.3.0
+
+    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+
+``` r
 gameboard <- data.frame(space = 1:40, title = c("Go" , "Mediterranean Avenue" , "Community Chest" , "Baltic Avenue" , "Income Tax" , "Reading Railroad" , "Oriental Avenue" , "Chance" , "Vermont Avenue" , "Connecticut Avenue" , "Jail" , "St. Charles Place" , "Electric Company" , "States Avenue" , "Virginia Avenue" , "Pennsylvania Railroad" , "St. James Place" , "Community Chest" , "Tennessee Avenue" , "New York Avenue" , "Free Parking" , "Kentucky Avenue" , "Chance" , "Indiana Avenue" , "Illinois Avenue" , "B & O Railroad" , "Atlantic Avenue" , "Ventnor Avenue" , "Water Works" , "Marvin Gardens" , "Go to jail" , "Pacific Avenue" , "North Carolina Avenue" , "Community Chest" , "Pennsylvania Avenue" , "Short Line Railroad" , "Chance" , "Park Place" , "Luxury Tax" , "Boardwalk"))
 
 chancedeck <- data.frame(index = 1:15, card = c("Advance to Go" , "Advance to Illinois Ave." , "Advance to St. Charles Place" , "Advance token to nearest Utility" , "Advance token to the nearest Railroad" , "Take a ride on the Reading Railroad" , "Take a walk on the Boardwalk" , "Go to Jail" , "Go Back 3 Spaces" , "Bank pays you dividend of $50" , "Get out of Jail Free" , "Make general repairs on all your property" , "Pay poor tax of $15" , "You have been elected Chairman of the Board" , "Your building loan matures"))
@@ -65,7 +76,7 @@ chancedeck <- data.frame(index = 1:15, card = c("Advance to Go" , "Advance to Il
 communitydeck <- data.frame(index = 1:16, card = c("Advance to Go" , "Go to Jail" , "Bank error in your favor ??? Collect $200" , "Doctor's fees Pay $50" , "From sale of stock you get $45" , "Get Out of Jail Free" , "Grand Opera Night Opening" , "Xmas Fund matures" , "Income tax refund" , "Life insurance matures ??? Collect $100" , "Pay hospital fees of $100" , "Pay school tax of $150" , "Receive for services $25" , "You are assessed for street repairs" , "You have won second prize in a beauty contest" , "You inherit $100"))
 ```
 
-```{r Dice Function}
+``` r
 dice <- function(){
     faces <- sample(1:6, 2, replace=TRUE)
     if(faces[1] == faces[2]) doubles = TRUE
@@ -75,15 +86,19 @@ dice <- function(){
 }
 ```
 
-## Create Player Class
-```{r}
+Create Player Class
+-------------------
+
+``` r
 setClass(Class="Player",
          representation=list(position="numeric",Jail_Status="logical",Turns_In_Jail="numeric",Doubles_Count="numeric"),
          prototype=list(position=1,Jail_Status=FALSE,Turns_In_Jail=0,Doubles_Count=0))
 ```
 
-## Create Chance Deck
-```{r}
+Create Chance Deck
+------------------
+
+``` r
 chance<-function(player){
     draw<-sample(1:15,1,replace=TRUE)
     if(draw == 1)  #Advance to go
@@ -148,7 +163,8 @@ chance<-function(player){
 ```
 
 Create Community Chest
-```{r}
+
+``` r
 communitychest<-function(player){
     draw<-sample(1:16,1,replace=TRUE)
     if(draw == 1)  #Advance to go
@@ -166,8 +182,10 @@ communitychest<-function(player){
 }
 ```
 
-## Create Turn function
-```{r}
+Create Turn function
+--------------------
+
+``` r
 turn<-function(player){
   
   #regular turn, not in jail
@@ -285,8 +303,10 @@ return(player)
 }
 ```
 
-# Run the simluation (for two players):
-```{r}
+Run the simluation (for two players):
+=====================================
+
+``` r
 gameboard$frequency<-rep(0,40)
 for(i in 1:5000){
   player1<-new("Player")
@@ -308,9 +328,51 @@ for(i in 1:5000){
 }  
 ```
 
-```{r}
+``` r
 gameboard$prob<-gameboard$frequency/sum(gameboard$frequency)
 arrange(gameboard, desc(frequency))
 ```
+
+    ##    space                 title frequency     prob
+    ## 1     11                  Jail     68169 0.068169
+    ## 2     21          Free Parking     28879 0.028879
+    ## 3     17       St. James Place     28748 0.028748
+    ## 4     19      Tennessee Avenue     28616 0.028616
+    ## 5     23                Chance     28486 0.028486
+    ## 6     25       Illinois Avenue     26476 0.026476
+    ## 7     18       Community Chest     26372 0.026372
+    ## 8     15       Virginia Avenue     26282 0.026282
+    ## 9     27       Atlantic Avenue     26243 0.026243
+    ## 10    29           Water Works     26206 0.026206
+    ## 11    28        Ventnor Avenue     26205 0.026205
+    ## 12    26        B & O Railroad     26200 0.026200
+    ## 13    13      Electric Company     26095 0.026095
+    ## 14    20       New York Avenue     26077 0.026077
+    ## 15    30        Marvin Gardens     26015 0.026015
+    ## 16    32        Pacific Avenue     25935 0.025935
+    ## 17    22       Kentucky Avenue     25833 0.025833
+    ## 18    24        Indiana Avenue     25651 0.025651
+    ## 19    33 North Carolina Avenue     25187 0.025187
+    ## 20    16 Pennsylvania Railroad     25159 0.025159
+    ## 21    34       Community Chest     24191 0.024191
+    ## 22    14         States Avenue     23558 0.023558
+    ## 23     8                Chance     23408 0.023408
+    ## 24     9        Vermont Avenue     23116 0.023116
+    ## 25     4         Baltic Avenue     22944 0.022944
+    ## 26    36   Short Line Railroad     22934 0.022934
+    ## 27     6      Reading Railroad     22884 0.022884
+    ## 28    10    Connecticut Avenue     22823 0.022823
+    ## 29    12     St. Charles Place     22816 0.022816
+    ## 30     5            Income Tax     22766 0.022766
+    ## 31    35   Pennsylvania Avenue     22758 0.022758
+    ## 32     7       Oriental Avenue     22500 0.022500
+    ## 33    37                Chance     21941 0.021941
+    ## 34     1                    Go     21866 0.021866
+    ## 35     2  Mediterranean Avenue     21777 0.021777
+    ## 36    40             Boardwalk     21590 0.021590
+    ## 37     3       Community Chest     21255 0.021255
+    ## 38    38            Park Place     20988 0.020988
+    ## 39    39            Luxury Tax     20786 0.020786
+    ## 40    31            Go to jail       265 0.000265
 
 Above investigates the frequency of which certain spots in the game are landed on.
