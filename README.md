@@ -1,0 +1,2 @@
+# Monopoly-
+Simulation of monopoly
