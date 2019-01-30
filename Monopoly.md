@@ -1,6 +1,6 @@
 Monopoly
 ================
-Zelos Zhu
+Miles Chen, Zelos Zhu
 April 6, 2016
 
 Rules for movement
@@ -334,45 +334,45 @@ arrange(gameboard, desc(frequency))
 ```
 
     ##    space                 title frequency     prob
-    ## 1     11                  Jail     68169 0.068169
-    ## 2     21          Free Parking     28879 0.028879
-    ## 3     17       St. James Place     28748 0.028748
-    ## 4     19      Tennessee Avenue     28616 0.028616
-    ## 5     23                Chance     28486 0.028486
-    ## 6     25       Illinois Avenue     26476 0.026476
-    ## 7     18       Community Chest     26372 0.026372
-    ## 8     15       Virginia Avenue     26282 0.026282
-    ## 9     27       Atlantic Avenue     26243 0.026243
-    ## 10    29           Water Works     26206 0.026206
-    ## 11    28        Ventnor Avenue     26205 0.026205
-    ## 12    26        B & O Railroad     26200 0.026200
-    ## 13    13      Electric Company     26095 0.026095
-    ## 14    20       New York Avenue     26077 0.026077
-    ## 15    30        Marvin Gardens     26015 0.026015
-    ## 16    32        Pacific Avenue     25935 0.025935
-    ## 17    22       Kentucky Avenue     25833 0.025833
-    ## 18    24        Indiana Avenue     25651 0.025651
-    ## 19    33 North Carolina Avenue     25187 0.025187
-    ## 20    16 Pennsylvania Railroad     25159 0.025159
-    ## 21    34       Community Chest     24191 0.024191
-    ## 22    14         States Avenue     23558 0.023558
-    ## 23     8                Chance     23408 0.023408
-    ## 24     9        Vermont Avenue     23116 0.023116
-    ## 25     4         Baltic Avenue     22944 0.022944
-    ## 26    36   Short Line Railroad     22934 0.022934
-    ## 27     6      Reading Railroad     22884 0.022884
-    ## 28    10    Connecticut Avenue     22823 0.022823
-    ## 29    12     St. Charles Place     22816 0.022816
-    ## 30     5            Income Tax     22766 0.022766
-    ## 31    35   Pennsylvania Avenue     22758 0.022758
-    ## 32     7       Oriental Avenue     22500 0.022500
-    ## 33    37                Chance     21941 0.021941
-    ## 34     1                    Go     21866 0.021866
-    ## 35     2  Mediterranean Avenue     21777 0.021777
-    ## 36    40             Boardwalk     21590 0.021590
-    ## 37     3       Community Chest     21255 0.021255
-    ## 38    38            Park Place     20988 0.020988
-    ## 39    39            Luxury Tax     20786 0.020786
-    ## 40    31            Go to jail       265 0.000265
+    ## 1     11                  Jail     68383 0.068383
+    ## 2     19      Tennessee Avenue     29005 0.029005
+    ## 3     21          Free Parking     28763 0.028763
+    ## 4     17       St. James Place     28478 0.028478
+    ## 5     23                Chance     28249 0.028249
+    ## 6     28        Ventnor Avenue     26474 0.026474
+    ## 7     15       Virginia Avenue     26333 0.026333
+    ## 8     29           Water Works     26308 0.026308
+    ## 9     27       Atlantic Avenue     26272 0.026272
+    ## 10    25       Illinois Avenue     26187 0.026187
+    ## 11    18       Community Chest     26157 0.026157
+    ## 12    26        B & O Railroad     26148 0.026148
+    ## 13    20       New York Avenue     26037 0.026037
+    ## 14    22       Kentucky Avenue     25942 0.025942
+    ## 15    13      Electric Company     25892 0.025892
+    ## 16    30        Marvin Gardens     25834 0.025834
+    ## 17    32        Pacific Avenue     25758 0.025758
+    ## 18    24        Indiana Avenue     25693 0.025693
+    ## 19    16 Pennsylvania Railroad     25131 0.025131
+    ## 20    33 North Carolina Avenue     24964 0.024964
+    ## 21    34       Community Chest     24291 0.024291
+    ## 22    14         States Avenue     23508 0.023508
+    ## 23    10    Connecticut Avenue     23337 0.023337
+    ## 24     8                Chance     23298 0.023298
+    ## 25    35   Pennsylvania Avenue     23229 0.023229
+    ## 26    12     St. Charles Place     23083 0.023083
+    ## 27     5            Income Tax     23042 0.023042
+    ## 28     4         Baltic Avenue     22969 0.022969
+    ## 29     9        Vermont Avenue     22880 0.022880
+    ## 30    36   Short Line Railroad     22769 0.022769
+    ## 31     6      Reading Railroad     22588 0.022588
+    ## 32     7       Oriental Avenue     22435 0.022435
+    ## 33    37                Chance     22004 0.022004
+    ## 34     1                    Go     21864 0.021864
+    ## 35     2  Mediterranean Avenue     21862 0.021862
+    ## 36    40             Boardwalk     21487 0.021487
+    ## 37     3       Community Chest     21346 0.021346
+    ## 38    38            Park Place     21062 0.021062
+    ## 39    39            Luxury Tax     20678 0.020678
+    ## 40    31            Go to jail       260 0.000260
 
 Above investigates the frequency of which certain spots in the game are landed on.

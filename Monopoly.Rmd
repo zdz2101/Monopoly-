@@ -1,6 +1,6 @@
 ---
 title: "Monopoly"
-author: "Zelos Zhu"
+author: "Miles Chen, Zelos Zhu"
 date: "April 6, 2016"
 output: github_document
 ---
